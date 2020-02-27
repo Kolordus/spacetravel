@@ -80,7 +80,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow-server-production-mode</artifactId>
-          <!--  <version>3.0.0</version> -->
+            <version>3.0.0</version>
         </dependency>
 
         <dependency>
@@ -103,6 +103,11 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
 
         <dependency>
@@ -162,7 +167,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <!-- Use the latest released version:
                 https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                <version>1.8.0</version>
+<!--                <version>1.8.0</version>-->
 
                 <executions>
                     <execution>
@@ -179,13 +184,13 @@
                     <nodeVersion>v13.9.0</nodeVersion>
 
                     <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
-                    <!--                    <npmVersion>2.15.9</npmVersion>-->
+                                        <npmVersion>2.15.9</npmVersion>
 
                     <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
                     <!--                    <downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
                 </configuration>
             </plugin>
-            
+
         </plugins>
 
 
@@ -212,7 +217,7 @@
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <configuration>
-                            <jvmArguments>-Dvaadin.productionMode</jvmArguments>
+                        <jvmArguments>-vaadin.productionMode</jvmArguments> <!--  D    -->
                         </configuration>
                     </plugin>
                     <plugin>
@@ -222,9 +227,10 @@
                         <executions>
                             <execution>
                                 <goals>
+                                    <goal>prepare-frontend</goal>
                                     <goal>build-frontend</goal>
                                 </goals>
-                                <phase>compile</phase>
+<!--                                <phase>compile</phase>-->
                             </execution>
                         </executions>
                     </plugin>
