@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.kolak.spacetravel.api.RestApi;
 import com.kolak.spacetravel.model.Flight;
 import com.kolak.spacetravel.model.FlightReservation;
+import com.kolak.spacetravel.model.Sex;
 import com.kolak.spacetravel.model.Tourist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -34,29 +35,29 @@ public class start {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDatabase() {
 
-//        Tourist user = new Tourist("user", "user", Sex.MALE, "user", Timestamp.valueOf("0000-01-01 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist1 = new Tourist("Andrzej", "Kmicic", Sex.MALE, "Lithuania", Timestamp.valueOf("1596-05-11 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist2 = new Tourist("Aleksandra", "Billewicz", Sex.FEMALE, "Lithuania", Timestamp.valueOf("1600-08-01 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist3 = new Tourist("Jan", "Skrzetuski", Sex.MALE, "Poland", Timestamp.valueOf("1610-10-09 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist4 = new Tourist("Onufry", "Zagłoba", Sex.MALE, "Poland", Timestamp.valueOf("1580-06-18 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist5 = new Tourist("Michał", "Wołodyjowski", Sex.MALE, "Poland", Timestamp.valueOf("1605-01-25 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist6 = new Tourist("Iwan", "Bohun", Sex.MALE, "Ukraine", Timestamp.valueOf("1615-01-01 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist7 = new Tourist("Jeremi", "Wiśniowiecki", Sex.MALE, "Ukraine", Timestamp.valueOf("1595-03-01 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist8 = new Tourist("Jan", "Waza", Sex.MALE, "Sweden", Timestamp.valueOf("1600-01-30 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist9 = new Tourist("Helena", "Skrzetuska", Sex.FEMALE, "Ukraine", Timestamp.valueOf("1620-11-07 00:00:00").toLocalDateTime().toLocalDate());
-//        Tourist tourist10 = new Tourist("Andrzej", "Duda", Sex.MALE, "Poland", Timestamp.valueOf("1979-12-27 00:00:00").toLocalDateTime().toLocalDate());
-//
-//        restApi.addTourist(user);
-//        restApi.addTourist(tourist1);
-//        restApi.addTourist(tourist2);
-//        restApi.addTourist(tourist3);
-//        restApi.addTourist(tourist4);
-//        restApi.addTourist(tourist5);
-//        restApi.addTourist(tourist6);
-//        restApi.addTourist(tourist7);
-//        restApi.addTourist(tourist8);
-//        restApi.addTourist(tourist9);
-//        restApi.addTourist(tourist10);
+       Tourist user = new Tourist("user", "user", Sex.MALE, "user", Timestamp.valueOf("0000-01-01 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist1 = new Tourist("Andrzej", "Kmicic", Sex.MALE, "Lithuania", Timestamp.valueOf("1596-05-11 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist2 = new Tourist("Aleksandra", "Billewicz", Sex.FEMALE, "Lithuania", Timestamp.valueOf("1600-08-01 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist3 = new Tourist("Jan", "Skrzetuski", Sex.MALE, "Poland", Timestamp.valueOf("1610-10-09 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist4 = new Tourist("Onufry", "Zagłoba", Sex.MALE, "Poland", Timestamp.valueOf("1580-06-18 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist5 = new Tourist("Michał", "Wołodyjowski", Sex.MALE, "Poland", Timestamp.valueOf("1605-01-25 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist6 = new Tourist("Iwan", "Bohun", Sex.MALE, "Ukraine", Timestamp.valueOf("1615-01-01 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist7 = new Tourist("Jeremi", "Wiśniowiecki", Sex.MALE, "Ukraine", Timestamp.valueOf("1595-03-01 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist8 = new Tourist("Jan", "Waza", Sex.MALE, "Sweden", Timestamp.valueOf("1600-01-30 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist9 = new Tourist("Helena", "Skrzetuska", Sex.FEMALE, "Ukraine", Timestamp.valueOf("1620-11-07 00:00:00").toLocalDateTime().toLocalDate());
+       Tourist tourist10 = new Tourist("Andrzej", "Duda", Sex.MALE, "Poland", Timestamp.valueOf("1979-12-27 00:00:00").toLocalDateTime().toLocalDate());
+
+       restApi.addTourist(user);
+       restApi.addTourist(tourist1);
+       restApi.addTourist(tourist2);
+       restApi.addTourist(tourist3);
+       restApi.addTourist(tourist4);
+       restApi.addTourist(tourist5);
+       restApi.addTourist(tourist6);
+       restApi.addTourist(tourist7);
+       restApi.addTourist(tourist8);
+       restApi.addTourist(tourist9);
+       restApi.addTourist(tourist10);
 
         List<Tourist> flightTourists = Lists.newArrayList();
 
