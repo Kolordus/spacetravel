@@ -184,7 +184,7 @@
                     <nodeVersion>v13.9.0</nodeVersion>
 
                     <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
-                                        <npmVersion>2.15.9</npmVersion>
+                                        <npmVersion>6.11.3</npmVersion>
 
                     <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
                     <!--                    <downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
