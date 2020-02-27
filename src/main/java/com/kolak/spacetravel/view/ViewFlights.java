@@ -1,11 +1,12 @@
 package com.kolak.spacetravel.view;
 
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.kolak.spacetravel.api.RestApi;
-import com.kolak.spacetravel.model.*;
-
+import com.kolak.spacetravel.model.Flight;
+import com.kolak.spacetravel.model.FlightReservation;
+import com.kolak.spacetravel.model.Tourist;
+import com.kolak.spacetravel.model.TouristDto;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -20,7 +21,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Route("fligths")
