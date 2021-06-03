@@ -8,6 +8,7 @@ public class SpacetravelApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpacetravelApplication.class, args);
+
     }
 
 }

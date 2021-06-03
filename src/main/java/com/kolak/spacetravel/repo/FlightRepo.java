@@ -24,7 +24,4 @@ public interface FlightRepo extends JpaRepository<Flight, Long> {
     List<Flight> findAllByDepartureDateAndTicketPriceBetween(@Param("departTime") Timestamp timestamp,
                                                              @Param("lowPrice") float lowPrice,
                                                              @Param("highPrice") float highPrice);
-
-
-
 }
