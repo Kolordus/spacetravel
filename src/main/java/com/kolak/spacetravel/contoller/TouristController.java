@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController()
 @RequestMapping("/api")
@@ -16,6 +17,7 @@ import java.util.List;
 public class TouristController {
 
     private final TouristService touristService;
+    private final Logger log = Logger.getLogger(TouristController.class.getName());
 
     @Autowired
     public TouristController(TouristService touristService) {
@@ -25,8 +27,7 @@ public class TouristController {
 
     @GetMapping("/all-tourists")
     public ResponseEntity<List<Tourist>> getAllTourists() {
-        return new ResponseEntity<>(touristService.getAllTourists()
-                , HttpStatus.OK);
+        return new ResponseEntity<>(touristService.getAllTourists(), HttpStatus.OK);
     }
 
     @GetMapping("/tourist/{id}")
@@ -34,9 +35,17 @@ public class TouristController {
         return ResponseEntity.ok(touristService.getTouristById(id));
     }
 
+    @GetMapping("/buyFlight")
+    public ResponseEntity<?> assignFlightToTourist(@RequestParam Long touristId,
+                                                   @RequestParam Long flightId) {
+        touristService.assignFlightToTourist(touristId, flightId);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/add-tourist")
     public ResponseEntity<?> addTourist(@RequestBody Tourist tourist) {
         touristService.addTourist(tourist);
+        log.info("Tourist created: " + tourist);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

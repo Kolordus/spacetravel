@@ -1,6 +1,7 @@
 package com.kolak.spacetravel.service;
 
 
+import com.kolak.spacetravel.excpetion.NoSuchElementException;
 import com.kolak.spacetravel.model.Flight;
 import com.kolak.spacetravel.repo.FlightRepo;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 public class FlightService {
 
-    private FlightRepo flightRepo;
+    private final FlightRepo flightRepo;
 
     public FlightService(FlightRepo flightRepo) {
         this.flightRepo = flightRepo;
@@ -23,7 +24,7 @@ public class FlightService {
     }
 
     public Flight getFlightById(Long id) {
-        return flightRepo.findById(id).get();
+        return flightRepo.findById(id).orElseThrow(() -> new NoSuchElementException("No such flight"));
     }
 
     public List<Flight> getFlightAfterDate(Timestamp departTime) {

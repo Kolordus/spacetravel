@@ -1,13 +1,14 @@
 package com.kolak.spacetravel.contoller;
 
-import com.kolak.spacetravel.service.FlightService;
 import com.kolak.spacetravel.model.Flight;
+import com.kolak.spacetravel.service.FlightService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api")
@@ -15,6 +16,7 @@ import java.util.List;
 public class FlightController {
 
     private final FlightService flightService;
+    private final Logger log = Logger.getLogger(FlightController.class.getName());
 
     public FlightController(FlightService flightService) {
         this.flightService = flightService;
@@ -22,16 +24,13 @@ public class FlightController {
 
     @GetMapping("/all-flights")
     public ResponseEntity<List<Flight>> getAllFlights() {
-        return new ResponseEntity<>(flightService.getAllFlights(),
-                HttpStatus.OK);
+        return new ResponseEntity<>(flightService.getAllFlights(), HttpStatus.OK);
     }
 
     @GetMapping("/flight/{id}")
     public ResponseEntity<Flight> getFlightById(@PathVariable Long id) {
-        return new ResponseEntity(flightService.getFlightById(id),
-                HttpStatus.OK);
+        return new ResponseEntity<>(flightService.getFlightById(id), HttpStatus.OK);
     }
-
 
     @GetMapping("/flights/date")
     public ResponseEntity<List<Flight>> getFlightAfterDate(@RequestParam Timestamp departTime) {
@@ -58,19 +57,20 @@ public class FlightController {
     @PostMapping("/add-flight")
     public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
         flightService.addFlight(flight);
+        log.info("Flight created: " + flight);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
     @DeleteMapping("/delete-flight/{id}")
-    public ResponseEntity deleteFlight(@PathVariable Long id) {
+    public ResponseEntity<?> deleteFlight(@PathVariable Long id) {
         flightService.deleteFlight(id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update-flight/{id}")
-    public ResponseEntity updateFlight(@PathVariable Long id,
-                                       @RequestBody Flight newFlight) {
+    public ResponseEntity<?> updateFlight(@PathVariable Long id,
+                                          @RequestBody Flight newFlight) {
         flightService.updateFlight(newFlight, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

@@ -1,20 +1,26 @@
 package com.kolak.spacetravel.service;
 
+import com.kolak.spacetravel.excpetion.NoSuchElementException;
+import com.kolak.spacetravel.model.Flight;
 import com.kolak.spacetravel.model.Tourist;
+import com.kolak.spacetravel.repo.FlightRepo;
 import com.kolak.spacetravel.repo.TouristRepo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class TouristService {
 
-    private TouristRepo touristRepo;
+    private final TouristRepo touristRepo;
+    private final FlightRepo flightRepo;
 
-    public TouristService(TouristRepo touristRepo) {
+    public TouristService(TouristRepo touristRepo, FlightRepo flightRepo) {
         this.touristRepo = touristRepo;
+        this.flightRepo = flightRepo;
     }
 
     public List<Tourist> getAllTourists() {
@@ -53,4 +59,24 @@ public class TouristService {
     }
 
 
+    public void assignFlightToTourist(Long touristId, Long flightId) {
+        Optional<Flight> attachedFlight = flightRepo.findById(flightId);
+        if (!attachedFlight.isPresent()) {
+            throw new NoSuchElementException("No such flight!!");
+        }
+
+        Optional<Tourist> attachedTourist = touristRepo.findById(touristId);
+        if (!attachedTourist.isPresent()) {
+            throw new NoSuchElementException("No such toruist");
+        }
+
+        Flight flight = attachedFlight.get();
+        Tourist tourist = attachedTourist.get();
+
+        tourist.getFlights().add(flight);
+        flight.getTourists().add(tourist);
+
+        touristRepo.save(tourist);
+        flightRepo.save(flight);
+    }
 }

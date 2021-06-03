@@ -26,6 +26,8 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
+/space-travel-frontend/space-travel-react/node_modules
+/space-travel-frontend/space-travel-react/package-lock.json
 
 ### VS Code ###
 .vscode/
