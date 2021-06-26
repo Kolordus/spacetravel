@@ -1,21 +1,21 @@
-# spacetravel
+plan do wykonania
 
-This project is a show off of my skills for internship interwiev.
-I succedded :)
+1. logowanie skopiowac na litosc boga to co mam kurwa mac!
+   - admin panel ->
+      - tylko on moze usuwac loty
+      - ma podglad ile dany lot zarobi
+      - ile pasazerow
+      - moze zmieniac aktualna cene
+      - loty ktore poszly w pizdu sa wyszarzone
+   - user panel -> gdzie moze bookowac bilety
+      - pokazuje mu tylko aktualne loty
+      - moze se zmienic imie i nazwisko w edit
 
-Technologies used: Spring Boot, Hibernate, Vaadin
+2. sortowanie
+   - tak jak jest są przygotowane metody
 
-View classes 'ViewFlights' and 'ViewTourist' are meant to be admin's panel for managing data (such as creating new
-flights managing reservations). Class 'ReservationView' is custemer side of app. Spring Security was not required.
+3. zrobic by budowalo sie wszystko w jednej paczce
+4. walidacja danych - czas dotarcia nie moze byc przed czasem wylotu i to samo z wyszukiwaniem - nie mozna ustawic daty
+   przed dzisiejsza
+5. jakies ladne ostylowanie tego gowna-
 
-To transfer data to VIEW classes i had to prepare some model classes: Flight, Tourist and Reservation. Reservation class
-gets IDs of two others. Other classes in model are auxillary for passing needed informations (DTOs).
-
-Manager keeps dependencies of all repositories and works as service for RestApi.
-
-do ogarnięcia
-
-- lombok
-- many to many
-- thymeleaf
-- poskracać zdecydowanie(metody restowe - wartości domyślne itp)

@@ -3,20 +3,25 @@ package com.kolak.spacetravel.service;
 
 import com.kolak.spacetravel.excpetion.NoSuchElementException;
 import com.kolak.spacetravel.model.Flight;
+import com.kolak.spacetravel.model.Tourist;
 import com.kolak.spacetravel.repo.FlightRepo;
+import com.kolak.spacetravel.repo.TouristRepo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FlightService {
 
     private final FlightRepo flightRepo;
+    private final TouristRepo touristRepo;
 
-    public FlightService(FlightRepo flightRepo) {
+    public FlightService(FlightRepo flightRepo, TouristRepo touristRepo) {
         this.flightRepo = flightRepo;
+        this.touristRepo = touristRepo;
     }
 
     public List<Flight> getAllFlights() {
@@ -45,6 +50,17 @@ public class FlightService {
 
 
     public void deleteFlight(Long id) {
+        Flight one = flightRepo.getOne(id);
+        Set<Tourist> tourists = one.getTourists();
+
+        for (Tourist tourist : tourists) {
+            Set<Flight> flights = tourist.getFlights();
+            flights.remove(one);
+            tourist.setFlights(flights);
+
+            touristRepo.save(tourist);
+        }
+
         flightRepo.deleteById(id);
     }
 

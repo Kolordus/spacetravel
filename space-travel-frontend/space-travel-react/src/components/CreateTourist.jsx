@@ -36,8 +36,8 @@ export const CreateTourist = () => {
 
     return (
         <div>
-            <input placeholder='name' onChange={handleNameChange}/>
-            <input placeholder='surname'/>
+            <input placeholder='name' onChange={handleNameChange} style={{flex: 1}}/>
+            <input placeholder='surname' style={{flex: 1}}/>
         </div>
     )
 }
