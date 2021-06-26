@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 
 public class UserController {
@@ -42,8 +42,8 @@ public class UserController {
 
     @PostMapping("/register")
     @PermitAll()
-    public ResponseEntity<?> saveUser(@RequestBody User user) {
-        userService.saveUser(user);
+    public ResponseEntity<?> saveUser(@RequestBody LoginCredentials loginCredentials) {
+        userService.saveUser(loginCredentials);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -65,12 +65,13 @@ public class UserController {
     @PermitAll()
     @PostMapping("/authenticate")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginCredentials loginCredentials) {
+        logger.info("halo " + loginCredentials);
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginCredentials.getUsername(), loginCredentials.getPassword())
             );
         } catch (BadCredentialsException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         logger.info("JWT given");
         return new ResponseEntity<>(jwtUtil.generateToken(loginCredentials.getUsername()), HttpStatus.OK);

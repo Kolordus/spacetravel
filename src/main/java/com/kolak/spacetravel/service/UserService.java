@@ -2,6 +2,7 @@ package com.kolak.spacetravel.service;
 
 import com.kolak.spacetravel.model.User;
 import com.kolak.spacetravel.repo.UserRepo;
+import com.kolak.spacetravel.security.util.LoginCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -23,11 +24,12 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public void saveUser(User user) {
-
-        // todo walidacja!!
-        // user dto
-        this.userRepo.save(user);
+    public void saveUser(LoginCredentials loginCredentials) {
+        this.userRepo.save(new User("ROLE_USER",
+                loginCredentials.getUsername(),
+                loginCredentials.getPassword(),
+                ""
+        ));
     }
 
     public boolean isUserTaken(String username) {

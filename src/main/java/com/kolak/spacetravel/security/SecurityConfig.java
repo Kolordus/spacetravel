@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        List<String> allowOrigins = singletonList("*");
+        List<String> allowOrigins = singletonList("http://localhost:3000");
         configuration.setAllowedOrigins(allowOrigins);
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "DELETE", "UPDATE", "OPTIONS"));
         configuration.setAllowedHeaders(singletonList("*"));
